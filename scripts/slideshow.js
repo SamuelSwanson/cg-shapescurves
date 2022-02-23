@@ -47,3 +47,6 @@ function nextSlide() {
         app.renderer.drawSlide(app.slide_idx);
     }
 }
+function radians(degrees) {
+    return degrees * Math.PI / 180;
+}
