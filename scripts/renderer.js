@@ -156,7 +156,7 @@ class Renderer {
         ctx.strokeStyle = 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',' + (color[3]/255.0) + ')';
         ctx.beginPath();
         ctx.moveTo(pt0.x, pt0.y);
-        ctx.lineTo(pt1.x, pt1.y);
+        ctx.lineTo(pt1.x, pt1.y); // another test
         ctx.stroke(); // comment for ssh
     }
 
