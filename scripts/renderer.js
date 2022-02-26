@@ -157,7 +157,7 @@ class Renderer {
         ctx.beginPath();
         ctx.moveTo(pt0.x, pt0.y);
         ctx.lineTo(pt1.x, pt1.y);
-        ctx.stroke(); 
+        ctx.stroke(); // comment for ssh
     }
 
 };
