@@ -64,10 +64,10 @@ class Renderer {
         this.drawBezierCurve(({x:250,y:300}),({x:150,y:300}),({x:150,y:200}),({x:200,y:200}),[0,255,0,255], ctx);
         this.drawBezierCurve(({x:200,y:200}),({x:250,y:200}),({x:250,y:100}),({x:150,y:100}),[0,255,0,255], ctx);
         this.drawCircle(({x:300,y:150}),50,[255,0,0,255],ctx);
-        this.drawLine(({x:325,y:200}),({x:375,y:100}),[255,0,0,255],ctx);
+        this.drawLine(({x:350,y:150}),({x:365,y:100}),[255,0,0,255],ctx);
         if(this.show_points){
-            this.drawCirclePoints(({x:325,y:200}),2,[255,0,0,255],ctx);
-            this.drawCirclePoints(({x:375,y:100}),2,[255,0,0,255],ctx);
+            this.drawCirclePoints(({x:350,y:150}),2,[255,0,0,255],ctx);
+            this.drawCirclePoints(({x:365,y:100}),2,[255,0,0,255],ctx);
         }
         this.drawBezierCurve(({x:400,y:100}),({x:400,y:225}),({x:475,y:225}),({x:475,y:100}),[0,0,255,255], ctx);
         this.drawBezierCurve(({x:475,y:100}),({x:475,y:225}),({x:550,y:225}),({x:550,y:100}),[0,0,255,255], ctx);
