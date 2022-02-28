@@ -56,13 +56,23 @@ class Renderer {
 
     // ctx:          canvas context
     drawSlide2(ctx) {
-        this.drawBezierCurve();
+        this.drawBezierCurve(({x:100,y:100}),({x:150,y:200}),({x:300,y:200}),({x:300,y:100}),[0,255,0,255], ctx);
     }
 
     // ctx:          canvas context
     drawSlide3(ctx) {
-
+        this.drawBezierCurve(({x:250,y:300}),({x:150,y:300}),({x:150,y:200}),({x:200,y:200}),[0,255,0,255], ctx);
+        this.drawBezierCurve(({x:200,y:200}),({x:250,y:200}),({x:250,y:100}),({x:150,y:100}),[0,255,0,255], ctx);
+        this.drawCircle(({x:300,y:150}),50,[255,0,0,255],ctx);
+        this.drawLine(({x:325,y:200}),({x:375,y:100}),[255,0,0,255],ctx);
+        if(this.show_points){
+            this.drawCirclePoints(({x:325,y:200}),2,[255,0,0,255],ctx);
+            this.drawCirclePoints(({x:375,y:100}),2,[255,0,0,255],ctx);
+        }
+        this.drawBezierCurve(({x:400,y:100}),({x:400,y:225}),({x:475,y:225}),({x:475,y:100}),[0,0,255,255], ctx);
+        this.drawBezierCurve(({x:475,y:100}),({x:475,y:225}),({x:550,y:225}),({x:550,y:100}),[0,0,255,255], ctx);
     }
+    
 
     // left_bottom:  object ({x: __, y: __})
     // right_top:    object ({x: __, y: __})
@@ -143,8 +153,31 @@ class Renderer {
     // color:        array of int [R, G, B, A]
     // ctx:          canvas context
     drawBezierCurve(pt0, pt1, pt2, pt3, color, ctx) {
-        let x = (1-t)^3*pt0.x+3*(1-t)^2*t*pt1.x+3*(1-t)*t^2*pt2.x+t^3*pt3.x;
-        let y = (1-t)^3*pt0.y+3*(1-t)^2*t*pt1.y+3*(1-t)*t^2*pt2.y+t^3*pt3.y;
+        let x = 0;
+        let y = 0;
+        let tempX = 0;
+        let tempY = 0;
+        let t = 1/this.num_curve_sections;
+        let tCounter = t;
+        
+        for(let i = 0; i < this.num_curve_sections; i++){
+            if(i == 0){
+                tempX = pt0.x;
+                tempY = pt0.y;
+            }
+            if(this.show_points){
+                this.drawCirclePoints(({x:tempX,y:tempY}), 2, color, ctx);
+            } 
+            x = Math.pow((1-t),3)*pt0.x+3*Math.pow((1-t),2)*t*pt1.x+3*(1-t)*Math.pow(t,2)*pt2.x+Math.pow(t,3)*pt3.x;
+            y = Math.pow((1-t),3)*pt0.y+3*Math.pow((1-t),2)*t*pt1.y+3*(1-t)*Math.pow(t,2)*pt2.y+Math.pow(t,3)*pt3.y;
+            this.drawLine(({x:tempX,y:tempY}),({x:x,y:y}),color,ctx);
+            t = t + tCounter;
+            tempX = x;
+            tempY = y;
+        }
+        if(this.show_points){
+            this.drawCirclePoints(({x:tempX,y:tempY}), 2, color, ctx);
+        }
     }
 
     // pt0:          object ({x: __, y: __})
