@@ -159,7 +159,10 @@ class Renderer {
         let tempY = 0;
         let t = 1/this.num_curve_sections;
         let tCounter = t;
-        
+        if(this.show_points){
+            this.drawCirclePoints(({x:pt1.x,y:pt1.y}), 2, color, ctx);
+            this.drawCirclePoints(({x:pt2.x,y:pt2.y}), 2, color, ctx);
+        }
         for(let i = 0; i < this.num_curve_sections; i++){
             if(i == 0){
                 tempX = pt0.x;
